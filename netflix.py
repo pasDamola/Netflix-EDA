@@ -8,7 +8,7 @@ import numpy as np
 st.title('Netflix Data Analysis')
 
 st.markdown("""
-This app performs analysis of the movie site known as [Netflix](https://netflix.com/)
+This app performs analysis of the popular movie site known as [Netflix](https://netflix.com/)
 * **Python libraries:** base64, pandas, streamlit
 * **Data source:** [kaggle](https://www.kaggle.com/shivamb/netflix-shows).
 """)
