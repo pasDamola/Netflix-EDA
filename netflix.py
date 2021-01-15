@@ -4,6 +4,8 @@ import base64
 import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
+from collections import Counter
+
 
 st.title('Netflix Data Analysis')
 
@@ -16,6 +18,13 @@ This app performs analysis of the popular movie site known as [Netflix](https://
 # Load netflix data
 df = pd.read_csv('netflix_titles.csv')
 
+def countries_with_most_titles(data_frame, column_name, limit):
+   return(dict(Counter(data_frame[column_name].values).most_common(limit)))
+
+countries_data = countries_with_most_titles(df, 'country', 11)
+countries_df = pd.DataFrame(list(countries_data.items()), columns = ['country','no_of_titles']) 
+countries_df = countries_df.drop(countries_df.index[2])
+print(countries_df) 
 
 st.sidebar.header('User Input Features')
 selected_type = st.sidebar.selectbox('Filter by Type', df.type.unique())
@@ -30,3 +39,6 @@ df_selected_show = df[(df.release_year==selected_year) & (df.type==selected_type
 st.header('Display Netflix Stats of Selected Category(ies)')
 st.write('Data Dimension: ' + str(df_selected_show.shape[0]) + ' rows and ' + str(df_selected_show.shape[1]) + ' columns.')
 st.dataframe(df_selected_show)
+
+st.header('Top 10 countries with the most titles')
+st.dataframe(countries_df)
