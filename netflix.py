@@ -24,7 +24,6 @@ def countries_with_most_titles(data_frame, column_name, limit):
 countries_data = countries_with_most_titles(df, 'country', 11)
 countries_df = pd.DataFrame(list(countries_data.items()), columns = ['country','no_of_titles']) 
 countries_df = countries_df.drop(countries_df.index[2])
-print(countries_df) 
 
 st.sidebar.header('User Input Features')
 selected_type = st.sidebar.selectbox('Filter by Type', df.type.unique())
